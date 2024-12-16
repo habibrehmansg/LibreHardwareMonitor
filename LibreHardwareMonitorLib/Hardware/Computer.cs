@@ -498,6 +498,21 @@ public class Computer : IComputer
         _open = true;
     }
 
+    public void OpenWithoutRing0()
+    {
+        if (_open)
+            return;
+
+        _smbios = new SMBios();
+
+        Mutexes.Open();
+        OpCode.Open();
+
+        AddGroups();
+
+        _open = true;
+    }
+
     private void AddGroups()
     {
         if (_motherboardEnabled)
